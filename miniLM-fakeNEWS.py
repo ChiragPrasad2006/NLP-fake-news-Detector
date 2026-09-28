@@ -53,3 +53,13 @@ trainer=Trainer(
     train_dataset=tokenized_train_data,
     eval_dataset=tokenized_test_data
 )
+
+trainer.train()
+# 2. Evaluate on the test dataset
+eval_results = trainer.evaluate()
+print("Evaluation results:", eval_results)
+# 3. Save the final fine-tuned model and tokenizer
+model_save_path = "./models/minilm_finetuned/final"
+trainer.save_model(model_save_path)
+tokenizer.save_pretrained(model_save_path)
+print(f"Model and tokenizer saved successfully to {model_save_path}")
